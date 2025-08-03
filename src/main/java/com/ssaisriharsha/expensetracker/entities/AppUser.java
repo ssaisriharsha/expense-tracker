@@ -1,11 +1,13 @@
 package com.ssaisriharsha.expensetracker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -23,7 +25,9 @@ public class AppUser {
     @Column(nullable = false)
     private String password;
     private LocalDateTime createdOn=LocalDateTime.now();
-
+    @OneToMany(mappedBy="user")
+    @JsonIgnore
+    private List<Expense> expenses;
     public AppUser(String username, String password, String email) {
         this.username=username;
         this.password=password;
