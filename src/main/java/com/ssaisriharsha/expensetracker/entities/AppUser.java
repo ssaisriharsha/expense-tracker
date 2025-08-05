@@ -24,6 +24,7 @@ public class AppUser {
     private String username;
     @Column(nullable = false)
     private String password;
+    private String authority;
     private LocalDateTime createdOn=LocalDateTime.now();
     @OneToMany(mappedBy="user")
     @JsonIgnore
